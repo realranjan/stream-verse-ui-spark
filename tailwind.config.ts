@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,23 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				twitch: {
+					"50": "#f5f3ff",
+					"100": "#ede8ff",
+					"200": "#dcd6ff",
+					"300": "#c3b5ff",
+					"400": "#a487f5", // Purple-ish similar to Twitch
+					"500": "#9b87f5", // Main Twitch purple
+					"600": "#7E69AB", // Darker Twitch purple
+					"700": "#6E59A5", // Even darker purple
+					"800": "#1A1F2C", // Dark background
+					"900": "#221F26", // Very dark background
+				},
+				neon: {
+					orange: "#F97316", // Bright orange
+					pink: "#D946EF", // Magenta pink
+					blue: "#1EAEDB", // Bright blue
 				}
 			},
 			borderRadius: {
@@ -84,11 +102,26 @@ export default {
 					to: {
 						height: '0'
 					}
-				}
+				},
+				'pulse': {
+					'0%, 100%': { opacity: 1 },
+					'50%': { opacity: 0.5 },
+				},
+				'slide-in': {
+					'0%': { transform: 'translateX(-100%)' },
+					'100%': { transform: 'translateX(0)' },
+				},
+				'fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(10px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse': 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+				'slide-in': 'slide-in 0.3s ease-out',
+				'fade-in': 'fade-in 0.3s ease-out',
 			}
 		}
 	},
