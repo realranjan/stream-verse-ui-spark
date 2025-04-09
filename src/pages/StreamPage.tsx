@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import VideoPlayer from "@/components/VideoPlayer";
+import VideoPlayer from "@/components/video-player";
 import LiveChat from "@/components/LiveChat";
 import StreamerCard from "@/components/StreamerCard";
 import { getStreamById, getStreamerById, mockStreams } from "@/data/mock-data";
