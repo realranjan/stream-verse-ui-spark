@@ -113,26 +113,10 @@ const VideoPlayer = ({
     }
   };
 
-  const toggleShare = () => {
-    setShareCount(prev => prev + 1);
-    // Implement share functionality
-  };
-
-  // Format view count for display
-  const formatViewCount = (count: number) => {
-    if (count >= 1000000) {
-      return (count / 1000000).toFixed(1) + "M";
-    }
-    if (count >= 1000) {
-      return (count / 1000).toFixed(1) + "K";
-    }
-    return count.toString();
-  };
-
   return (
-    <div className="flex flex-col rounded-lg overflow-hidden bg-card">
+    <div className="flex flex-col overflow-hidden bg-background border border-border rounded-sm">
       <div className="relative" ref={videoRef}>
-        {/* Main video/thumbnail container with hover effect */}
+        {/* Main video container with hover effect */}
         <div 
           className="relative aspect-video bg-black overflow-hidden"
           onMouseEnter={() => setIsHovering(true)}
@@ -142,22 +126,22 @@ const VideoPlayer = ({
             src={thumbnailUrl}
             alt={streamTitle}
             className={cn(
-              "w-full h-full object-cover transition-opacity duration-300",
-              isPlaying ? "opacity-80" : "opacity-100"
+              "w-full h-full object-cover",
+              isPlaying ? "opacity-90" : "opacity-100"
             )}
           />
           
           {/* Play/Pause overlay */}
           <div className={cn(
-            "absolute inset-0 flex items-center justify-center transition-opacity duration-300",
+            "absolute inset-0 flex items-center justify-center bg-black/20 transition-opacity duration-200",
             isPlaying && !isHovering ? "opacity-0" : "opacity-100"
           )}>
             <Button
-              variant="ghost"
+              variant="secondary"
               size="icon"
               className={cn(
-                "h-16 w-16 rounded-full bg-black/50 text-white hover:bg-black/70 hover:scale-110 transition-all",
-                isHovering ? "animate-pulse" : "",
+                "h-16 w-16 rounded-full bg-black/70 text-white hover:bg-black/80 transition-transform",
+                isHovering ? "scale-105" : "",
                 isPlaying ? "opacity-0 hover:opacity-100" : "opacity-100"
               )}
               onClick={togglePlayback}
@@ -165,34 +149,34 @@ const VideoPlayer = ({
               {isPlaying ? (
                 <Pause className="h-8 w-8" />
               ) : (
-                <Play className="h-8 w-8" />
+                <Play className="h-8 w-8 ml-1" />
               )}
             </Button>
           </div>
           
           {/* Live badge with pulse animation */}
           {isLive && (
-            <div className="absolute top-4 left-4">
-              <Badge className="bg-red-500 hover:bg-red-600 animate-pulse flex items-center gap-1.5 px-2 py-1 text-sm">
+            <div className="absolute top-3 left-3">
+              <Badge className="bg-red-500 hover:bg-red-600 flex items-center gap-1.5 px-2 py-0.5">
                 <span className="h-1.5 w-1.5 rounded-full bg-white animate-pulse"></span>
                 LIVE
               </Badge>
             </div>
           )}
 
-          {/* Language & Quality badge */}
-          <div className="absolute top-4 right-4 flex items-center gap-2">
-            <Badge variant="secondary" className="bg-black/60 text-white border-none">
+          {/* Language & Quality badges */}
+          <div className="absolute top-3 right-3 flex items-center gap-2">
+            <Badge variant="outline" className="bg-black/70 text-white border-border">
               {language}
             </Badge>
-            <Badge variant="secondary" className="bg-black/60 text-white border-none">
+            <Badge variant="outline" className="bg-black/70 text-white border-border">
               {quality}
             </Badge>
           </div>
 
           {/* Video controls - bottom */}
           <div className={cn(
-            "absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300",
+            "absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/90 to-transparent transition-opacity duration-200",
             isHovering || isPlaying ? "opacity-100" : "opacity-0"
           )}>
             <div className="flex items-center gap-2 mb-2 relative">
@@ -210,12 +194,12 @@ const VideoPlayer = ({
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <div 
-                        className="absolute h-3 w-1 bg-twitch-500 rounded-full cursor-pointer top-0 transform -translate-y-1/2 hover:h-4 transition-all"
+                        className="absolute h-3 w-1 bg-primary rounded-none cursor-pointer top-0 transform -translate-y-1/2 hover:h-4 transition-all"
                         style={{ left: `${marker.position}%` }}
                       ></div>
                     </TooltipTrigger>
                     <TooltipContent>
-                      <p className="text-xs">{marker.label}</p>
+                      <p className="text-xs font-medium">{marker.label}</p>
                     </TooltipContent>
                   </Tooltip>
                 </TooltipProvider>
@@ -227,7 +211,7 @@ const VideoPlayer = ({
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="h-8 w-8 text-white hover:bg-white/10"
+                  className="h-8 w-8 text-white hover:bg-white/10 rounded-sm"
                   onClick={togglePlayback}
                 >
                   {isPlaying ? (
@@ -241,7 +225,7 @@ const VideoPlayer = ({
                   <Button
                     variant="ghost"
                     size="icon"
-                    className="h-8 w-8 text-white hover:bg-white/10"
+                    className="h-8 w-8 text-white hover:bg-white/10 rounded-sm"
                     onClick={toggleMute}
                   >
                     {isMuted ? (
@@ -267,25 +251,25 @@ const VideoPlayer = ({
                   </div>
                 </div>
                 
-                <span className="text-xs text-white/90">
+                <span className="text-xs text-white/90 font-mono">
                   {Math.floor(progress / 100 * 600).toString().padStart(2, '0')}:{Math.floor((progress / 100 * 600) % 60).toString().padStart(2, '0')} / 10:00
                 </span>
               </div>
               
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-1">
                 <TooltipProvider>
                   <Tooltip>
                     <TooltipTrigger asChild>
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8 text-white hover:bg-white/10"
+                        className="h-8 w-8 text-white hover:bg-white/10 rounded-sm"
                         onClick={() => setQuality(quality === "1080p" ? "720p" : "1080p")}
                       >
                         <Settings className="h-4 w-4" />
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent>
+                    <TooltipContent side="top">
                       <p>Stream settings</p>
                     </TooltipContent>
                   </Tooltip>
@@ -297,13 +281,13 @@ const VideoPlayer = ({
                       <Button
                         variant="ghost"
                         size="icon"
-                        className="h-8 w-8 text-white hover:bg-white/10"
+                        className="h-8 w-8 text-white hover:bg-white/10 rounded-sm"
                         onClick={toggleFullscreen}
                       >
                         <Maximize className="h-4 w-4" />
                       </Button>
                     </TooltipTrigger>
-                    <TooltipContent>
+                    <TooltipContent side="top">
                       <p>Fullscreen</p>
                     </TooltipContent>
                   </Tooltip>
@@ -314,17 +298,17 @@ const VideoPlayer = ({
           
           {/* Animated view count */}
           {isPlaying && (
-            <div className="absolute top-16 left-4 animate-fade-in flex items-center gap-2 bg-black/50 px-3 py-1 rounded-full text-sm text-white/90">
+            <div className="absolute top-12 left-3 animate-fade-in flex items-center gap-2 bg-black/70 px-2 py-1 rounded-sm text-sm text-white/90">
               <span className="inline-block h-2 w-2 rounded-full bg-red-500 animate-pulse"></span>
               <span className="font-medium">{formatViewCount(viewerCount)} viewers</span>
             </div>
           )}
           
           {/* Chat activity indicator */}
-          <div className="absolute top-16 right-4 animate-fade-in">
-            <div className="flex items-center gap-1 bg-black/50 px-3 py-1 rounded-full text-xs">
-              <MessageSquare className="h-3 w-3 text-twitch-500" />
-              <span className="text-white/80">{chatCount}</span>
+          <div className="absolute top-12 right-3 animate-fade-in">
+            <div className="flex items-center gap-1 bg-black/70 px-2 py-1 rounded-sm text-xs">
+              <MessageSquare className="h-3 w-3 text-primary" />
+              <span className="text-white/90">{chatCount}</span>
             </div>
           </div>
         </div>
@@ -334,21 +318,20 @@ const VideoPlayer = ({
       <div className="p-4">
         <div className="flex items-start justify-between gap-4">
           <div className="flex items-start gap-3 flex-1 min-w-0">
-            <Avatar className="h-10 w-10 border-2 border-twitch-500 animate-twitch-pulse">
+            <Avatar className="h-10 w-10 rounded-sm ring-2 ring-primary/50 ring-offset-2 ring-offset-background">
               <AvatarImage src={streamerAvatar} />
-              <AvatarFallback className="bg-twitch-500/20">
+              <AvatarFallback className="bg-primary/20">
                 {streamerName.charAt(0).toUpperCase()}
               </AvatarFallback>
             </Avatar>
             
             <div className="space-y-1 flex-1 min-w-0">
-              <h2 className="font-semibold text-lg leading-tight line-clamp-2 group">
+              <h2 className="font-medium text-lg leading-tight line-clamp-2 group">
                 {streamTitle}
-                <span className="hidden group-hover:inline-block text-twitch-500">...</span>
               </h2>
               
               <div className="flex items-center flex-wrap gap-2">
-                <span className="text-sm font-medium hover:text-twitch-500 cursor-pointer transition-colors">
+                <span className="text-sm font-medium text-primary hover:underline cursor-pointer transition-colors">
                   {streamerName}
                 </span>
                 {isLive && (
@@ -364,7 +347,7 @@ const VideoPlayer = ({
                   <Badge 
                     key={index} 
                     variant="secondary" 
-                    className="hover:bg-twitch-500/20 cursor-pointer transition-colors"
+                    className="hover:bg-secondary/80 cursor-pointer transition-colors"
                   >
                     {category}
                   </Badge>
@@ -374,7 +357,7 @@ const VideoPlayer = ({
                   <Badge 
                     key={`tag-${index}`} 
                     variant="outline"
-                    className="text-xs bg-transparent border-white/20 hover:border-white/50"
+                    className="text-xs bg-transparent border-border hover:border-primary"
                   >
                     #{tag}
                   </Badge>
@@ -385,63 +368,43 @@ const VideoPlayer = ({
           
           <div className="flex flex-col items-end gap-2">
             <Button
-              variant="outline"
+              variant={isFollowing ? "default" : "outline"}
               size="sm"
               className={cn(
-                "gap-1 transition-all duration-300 min-w-[100px]",
-                isFollowing
-                  ? "bg-twitch-500 text-white hover:bg-twitch-600 hover:text-white animate-pulse"
-                  : "border-twitch-500 text-twitch-500 hover:bg-twitch-500/10"
+                "gap-1 transition-all duration-200 min-w-[100px]",
+                isFollowing && "animate-pulse"
               )}
               onClick={toggleFollow}
             >
               {isFollowing ? "Following" : "Follow"}
             </Button>
             
-            <div className="flex items-center gap-1">
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className={cn(
-                        "h-9 w-9 transition-colors",
-                        isLiked && "text-red-500 hover:text-red-600"
-                      )}
-                      onClick={toggleLike}
-                    >
-                      <Heart className={cn(
-                        "h-5 w-5 transition-transform",
-                        isLiked && "fill-current scale-110 animate-pulse"
-                      )} />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>{isLiked ? "Unlike" : "Like"}</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+            <div className="flex items-center gap-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={cn(
+                  "h-8 w-8 rounded-sm transition-colors",
+                  isLiked && "text-red-500 hover:text-red-600"
+                )}
+                onClick={toggleLike}
+              >
+                <Heart className={cn(
+                  "h-4 w-4 transition-transform",
+                  isLiked && "fill-current scale-110"
+                )} />
+              </Button>
               
               <span className="text-xs text-muted-foreground">{formatViewCount(likeCount)}</span>
               
-              <TooltipProvider>
-                <Tooltip>
-                  <TooltipTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      className="h-9 w-9 transition-colors"
-                      onClick={toggleShare}
-                    >
-                      <Share2 className="h-5 w-5" />
-                    </Button>
-                  </TooltipTrigger>
-                  <TooltipContent>
-                    <p>Share</p>
-                  </TooltipContent>
-                </Tooltip>
-              </TooltipProvider>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="h-8 w-8 rounded-sm transition-colors"
+                onClick={() => setShareCount(prev => prev + 1)}
+              >
+                <Share2 className="h-4 w-4" />
+              </Button>
               
               <span className="text-xs text-muted-foreground">{formatViewCount(shareCount)}</span>
             </div>
@@ -451,21 +414,21 @@ const VideoPlayer = ({
         {/* Expandable stream details */}
         <div className="mt-4">
           <Button 
-            variant="ghost" 
+            variant="secondary" 
             onClick={() => setShowDetails(!showDetails)}
-            className="w-full justify-between bg-card/50 hover:bg-card/80 py-2"
+            className="w-full justify-between py-2 text-sm font-medium"
           >
             <span>Stream details</span>
             {showDetails ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
           </Button>
           
           {showDetails && (
-            <div className="p-4 bg-card/30 rounded-md mt-2 space-y-4 animate-slide-down">
+            <div className="p-4 bg-secondary/30 rounded-sm mt-2 space-y-4 animate-slide-down border border-border/40">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
                   <p className="text-sm text-muted-foreground mb-1">Stream started</p>
                   <div className="flex items-center gap-1">
-                    <Clock className="h-4 w-4 text-twitch-500" />
+                    <Clock className="h-4 w-4 text-primary" />
                     <span>2 hours ago</span>
                   </div>
                 </div>
@@ -485,7 +448,7 @@ const VideoPlayer = ({
                         <Badge 
                           key={`detail-tag-${index}`} 
                           variant="outline"
-                          className="hover:bg-twitch-500/10 cursor-pointer transition-colors"
+                          className="hover:bg-primary/10 cursor-pointer transition-colors"
                         >
                           #{tag}
                         </Badge>
