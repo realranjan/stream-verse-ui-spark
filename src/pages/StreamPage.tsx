@@ -54,6 +54,8 @@ const StreamPage = () => {
             viewerCount={stream.viewerCount}
             categories={stream.categories}
             isLive={stream.isLive}
+            language={stream.language || "English"}
+            tags={stream.tags || ["gaming", "fps", "competitive"]}
           />
           
           <div className="mt-6">

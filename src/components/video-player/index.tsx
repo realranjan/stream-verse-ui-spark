@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import VideoControls from "./VideoControls";
 import StreamBadges from "./StreamBadges";
 import StreamInfo from "./StreamInfo";
-import { VideoPlayerProps } from "./types";
+import { VideoPlayerProps, StreamMarker, EmoteData } from "./types";
 
 const VideoPlayer = ({
   streamTitle,
@@ -32,7 +32,10 @@ const VideoPlayer = ({
   const [quality, setQuality] = useState("1080p");
   const [likeCount, setLikeCount] = useState(Math.floor(Math.random() * 5000) + 1000);
   const [shareCount, setShareCount] = useState(Math.floor(Math.random() * 1000) + 100);
-  const videoRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [emotes, setEmotes] = useState<EmoteData[]>([]);
+  const [clips, setClips] = useState([]);
   
   // Simulate random chat message count
   const [chatCount, setChatCount] = useState(Math.floor(Math.random() * 300) + 50);
@@ -64,11 +67,12 @@ const VideoPlayer = ({
     }
   }, [isPlaying]);
 
-  // Random stream highlights/markers
-  const streamMarkers = [
-    { position: 15, label: "First Kill" },
-    { position: 42, label: "Epic Play" },
-    { position: 78, label: "Victory" },
+  // Enhanced stream markers with types
+  const streamMarkers: StreamMarker[] = [
+    { position: 15, label: "First Kill", type: "highlight", color: "#9b87f5" },
+    { position: 42, label: "Epic Play", type: "highlight", color: "#F97316" },
+    { position: 60, label: "Clip: Amazing Combo", type: "clip", color: "#D946EF" },
+    { position: 78, label: "Victory", type: "highlight", color: "#10B981" },
   ];
 
   const togglePlayback = () => {
@@ -90,7 +94,7 @@ const VideoPlayer = ({
 
   const toggleFullscreen = () => {
     if (!document.fullscreenElement) {
-      videoRef.current?.requestFullscreen().catch((err) => {
+      containerRef.current?.requestFullscreen().catch((err) => {
         console.error(`Error attempting to enable fullscreen: ${err.message}`);
       });
       setIsFullscreen(true);
@@ -102,10 +106,10 @@ const VideoPlayer = ({
 
   return (
     <div className="flex flex-col overflow-hidden bg-background border border-border rounded-sm">
-      <div className="relative" ref={videoRef}>
+      <div className="relative" ref={containerRef}>
         {/* Main video container with hover effect */}
         <div 
-          className="relative aspect-video bg-black overflow-hidden"
+          className="relative aspect-video bg-black overflow-hidden video-player-container"
           onMouseEnter={() => setIsHovering(true)}
           onMouseLeave={() => setIsHovering(false)}
         >
@@ -116,6 +120,14 @@ const VideoPlayer = ({
               "w-full h-full object-cover",
               isPlaying ? "opacity-90" : "opacity-100"
             )}
+          />
+          
+          {/* Hidden video element - in a real app, this would be a real video */}
+          <video 
+            ref={videoRef}
+            className="hidden"
+            muted={isMuted}
+            playsInline
           />
           
           {/* Play/Pause overlay */}
@@ -163,6 +175,9 @@ const VideoPlayer = ({
             setIsMuted={setIsMuted}
             toggleFullscreen={toggleFullscreen}
             setQuality={setQuality}
+            isLive={isLive}
+            thumbnailUrl={thumbnailUrl}
+            streamTitle={streamTitle}
           />
         </div>
       </div>
