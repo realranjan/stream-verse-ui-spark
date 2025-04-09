@@ -52,6 +52,7 @@
 
   * {
     @apply border-border selection:bg-twitch-500/20 selection:text-twitch-500;
+    font-family: 'Poppins', sans-serif;
   }
   
   body {
@@ -96,5 +97,21 @@
 
   .custom-scrollbar::-webkit-scrollbar-thumb {
     @apply bg-twitch-500/50 rounded-full;
+  }
+  
+  .shimmer-effect {
+    @apply relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent;
+  }
+  
+  .neon-glow {
+    @apply animate-glow;
+  }
+  
+  .float-animation {
+    @apply animate-float;
+  }
+  
+  .bounce-in {
+    @apply animate-bounce-in;
   }
 }

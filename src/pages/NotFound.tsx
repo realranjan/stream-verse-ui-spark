@@ -17,13 +17,13 @@ const NotFound = () => {
   return (
     <div className="min-h-[80vh] flex flex-col items-center justify-center">
       <div className="text-center max-w-md">
-        <div className="text-twitch-500 font-bold text-7xl mb-4">404</div>
-        <h1 className="text-2xl font-bold mb-2">Stream Not Found</h1>
-        <p className="text-muted-foreground mb-6">
+        <div className="text-twitch-500 font-bold text-7xl mb-4 animate-float">404</div>
+        <h1 className="text-2xl font-bold mb-2 animate-fade-in">Stream Not Found</h1>
+        <p className="text-muted-foreground mb-6 animate-fade-in" style={{animationDelay: "0.2s"}}>
           Sorry, we couldn't find the page you're looking for. The streamer might be offline or the URL might be incorrect.
         </p>
         <Link to="/">
-          <Button className="bg-twitch-500 hover:bg-twitch-600">
+          <Button className="bg-twitch-500 hover:bg-twitch-600 animate-bounce-in" style={{animationDelay: "0.4s"}}>
             <Home className="mr-2 h-4 w-4" />
             Return to Home
           </Button>

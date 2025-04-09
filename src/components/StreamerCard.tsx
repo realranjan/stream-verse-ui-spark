@@ -39,7 +39,7 @@ const StreamerCard = ({
 
   return (
     <div
-      className="group rounded-lg overflow-hidden bg-card border transition-all duration-300 hover:border-twitch-500 hover:shadow-md hover:shadow-twitch-500/10"
+      className="group rounded-lg overflow-hidden bg-card border transition-all duration-300 hover:border-twitch-500 hover:shadow-md hover:shadow-twitch-500/10 animate-fade-in"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -51,7 +51,7 @@ const StreamerCard = ({
         />
 
         {isLive && (
-          <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/60 text-white text-xs px-2 py-1 rounded-full">
+          <div className="absolute top-2 left-2 flex items-center gap-1 bg-black/60 text-white text-xs px-2 py-1 rounded-full neon-glow">
             <span className="inline-block h-1.5 w-1.5 rounded-full bg-red-500 animate-pulse"></span>
             <span>LIVE</span>
           </div>
@@ -69,7 +69,7 @@ const StreamerCard = ({
           )}
         >
           <Link to={`/stream/${id}`}>
-            <Button className="bg-twitch-500 hover:bg-twitch-600 transition-transform hover:scale-105">
+            <Button className="bg-twitch-500 hover:bg-twitch-600 transition-transform hover:scale-105 animate-bounce-in">
               Watch Now
             </Button>
           </Link>
@@ -78,7 +78,7 @@ const StreamerCard = ({
 
       <div className="p-3 space-y-2">
         <div className="flex items-start gap-2">
-          <Avatar className="h-8 w-8 flex-shrink-0">
+          <Avatar className="h-8 w-8 flex-shrink-0 float-animation">
             <AvatarImage src={streamerAvatar} />
             <AvatarFallback className="bg-twitch-500/20">
               {streamerName.charAt(0).toUpperCase()}
@@ -93,7 +93,12 @@ const StreamerCard = ({
 
         <div className="flex flex-wrap gap-1">
           {categories.slice(0, 2).map((category, index) => (
-            <Badge key={index} variant="secondary" className="text-xs">
+            <Badge 
+              key={index} 
+              variant="secondary" 
+              className="text-xs shimmer-effect"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
               {category}
             </Badge>
           ))}

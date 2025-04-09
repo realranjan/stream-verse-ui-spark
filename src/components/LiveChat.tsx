@@ -88,7 +88,7 @@ const LiveChat = ({ className }: LiveChatProps) => {
   };
 
   return (
-    <div className={cn("flex flex-col h-full", className)}>
+    <div className={cn("flex flex-col h-full animate-fade-in", className)}>
       <div className="px-4 py-2 bg-card/50 rounded-t-lg border-b">
         <h3 className="font-semibold">Live Chat</h3>
       </div>
@@ -97,8 +97,12 @@ const LiveChat = ({ className }: LiveChatProps) => {
         ref={chatContainerRef}
         className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar"
       >
-        {chatMessages.map((msg) => (
-          <div key={msg.id} className="flex gap-2 animate-fade-in">
+        {chatMessages.map((msg, index) => (
+          <div 
+            key={msg.id} 
+            className="flex gap-2 animate-fade-in" 
+            style={{ animationDelay: `${Math.min(index * 0.05, 1)}s` }}
+          >
             <Avatar className="h-6 w-6 flex-shrink-0">
               <AvatarImage src={msg.avatarUrl} />
               <AvatarFallback className="bg-twitch-500/20 text-xs">
@@ -132,7 +136,7 @@ const LiveChat = ({ className }: LiveChatProps) => {
           <Button 
             size="icon" 
             onClick={handleSendMessage}
-            className="bg-twitch-500 hover:bg-twitch-600"
+            className="bg-twitch-500 hover:bg-twitch-600 animate-bounce-in"
           >
             <Send className="h-4 w-4" />
             <span className="sr-only">Send message</span>

@@ -14,13 +14,22 @@ import StreamPage from "@/pages/StreamPage";
 import NotFound from "@/pages/NotFound";
 import Header from "@/components/Header";
 
+// Preload font
+const preloadFont = () => {
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap';
+  document.head.appendChild(link);
+};
+preloadFont();
+
 const queryClient = new QueryClient();
 
 const AppContent = () => {
   const { isDarkMode, toggleTheme } = useTheme();
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col font-poppins">
       <Header isDarkMode={isDarkMode} toggleDarkMode={toggleTheme} />
       <main className="flex-1">
         <Routes>
