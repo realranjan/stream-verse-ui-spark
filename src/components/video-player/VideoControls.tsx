@@ -1,6 +1,6 @@
 
 import { useState, useRef } from "react";
-import { Play, Pause, Volume2, VolumeX, Maximize, MinusCircle, PlusCircle, PictureInPicture } from "lucide-react";
+import { Play, Pause, Volume2, VolumeX, Maximize, MinusCircle, PlusCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { cn } from "@/lib/utils";
@@ -9,7 +9,7 @@ import { StreamMarker } from "./types";
 import QualitySelector from "./QualitySelector";
 import ClipCreator from "./ClipCreator";
 import EmotePanel from "./EmotePanel";
-import PictureInPicture from "./PictureInPicture";
+import PictureInPictureButton from "./PictureInPicture";
 
 interface VideoControlsProps {
   isPlaying: boolean;
@@ -217,7 +217,7 @@ const VideoControls = ({
             streamTitle={streamTitle}
           />
           
-          <PictureInPicture 
+          <PictureInPictureButton 
             videoRef={videoRef}
             fallbackRef={containerRef}
           />

@@ -9,7 +9,7 @@ interface PictureInPictureProps {
   fallbackRef: React.RefObject<HTMLDivElement>;
 }
 
-const PictureInPicture = ({
+const PictureInPictureButton = ({
   videoRef,
   fallbackRef,
 }: PictureInPictureProps) => {
@@ -86,4 +86,4 @@ const PictureInPicture = ({
   );
 };
 
-export default PictureInPicture;
+export default PictureInPictureButton;
