@@ -1,4 +1,3 @@
-
 export interface Streamer {
   id: string;
   username: string;
@@ -26,6 +25,8 @@ export interface ChatMessage {
   message: string;
   timestamp: Date;
   avatarUrl: string;
+  isOwn?: boolean;
+  specialType?: 'subscriber' | 'moderator';
 }
 
 export interface PastStream {

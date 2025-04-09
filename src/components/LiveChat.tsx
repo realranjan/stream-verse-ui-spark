@@ -48,7 +48,7 @@ const LiveChat = ({ className }: LiveChatProps) => {
       const randomUsername = simulatedUsernames[Math.floor(Math.random() * simulatedUsernames.length)];
       const randomMessage = simulatedMessages[Math.floor(Math.random() * simulatedMessages.length)];
       const isSpecial = Math.random() > 0.8;
-      const specialType = isSpecial ? (Math.random() > 0.5 ? "subscriber" : "moderator") : undefined;
+      const specialType = isSpecial ? (Math.random() > 0.5 ? "subscriber" : "moderator") as 'subscriber' | 'moderator' : undefined;
 
       setChatMessages(prev => [
         ...prev,
