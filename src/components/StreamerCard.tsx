@@ -1,10 +1,11 @@
 
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { Eye, User } from "lucide-react";
+import { Eye, User, Heart } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
 
 interface StreamerCardProps {
@@ -16,6 +17,8 @@ interface StreamerCardProps {
   viewerCount: number;
   isLive?: boolean;
   categories: string[];
+  className?: string;
+  style?: React.CSSProperties;
 }
 
 const StreamerCard = ({
@@ -27,8 +30,11 @@ const StreamerCard = ({
   viewerCount,
   isLive = true,
   categories,
+  className,
+  style,
 }: StreamerCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isLiked, setIsLiked] = useState(false);
 
   const formatViewerCount = (count: number) => {
     if (count >= 1000) {
@@ -37,9 +43,19 @@ const StreamerCard = ({
     return count;
   };
 
+  const handleLike = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsLiked(!isLiked);
+  };
+
   return (
     <div
-      className="group rounded-lg overflow-hidden bg-card border transition-all duration-300 hover:border-twitch-500 hover:shadow-md hover:shadow-twitch-500/10 animate-fade-in"
+      className={cn(
+        "group card-hover twitch-card animate-fade-in",
+        className
+      )}
+      style={style}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -47,7 +63,7 @@ const StreamerCard = ({
         <img
           src={thumbnailUrl}
           alt={title}
-          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
 
         {isLive && (
@@ -62,6 +78,30 @@ const StreamerCard = ({
           <span>{formatViewerCount(viewerCount)}</span>
         </div>
 
+        <div className="absolute top-2 right-2">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button 
+                  size="icon"
+                  variant="ghost" 
+                  className={cn(
+                    "h-8 w-8 rounded-full bg-black/40 border border-white/10 text-white hover:bg-black/60 p-1.5",
+                    isHovered ? "opacity-100" : "opacity-0",
+                    isLiked && "text-red-500"
+                  )}
+                  onClick={handleLike}
+                >
+                  <Heart className={cn("h-4 w-4", isLiked && "fill-current")} />
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>{isLiked ? "Unlike" : "Like"}</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+
         <div
           className={cn(
             "absolute inset-0 flex items-center justify-center bg-black/50 transition-opacity duration-300",
@@ -69,7 +109,7 @@ const StreamerCard = ({
           )}
         >
           <Link to={`/stream/${id}`}>
-            <Button className="bg-twitch-500 hover:bg-twitch-600 transition-transform hover:scale-105 animate-bounce-in">
+            <Button className="btn-twitch shadow-lg shadow-twitch-500/20 transition-transform hover:scale-105 animate-bounce-in">
               Watch Now
             </Button>
           </Link>
@@ -78,16 +118,22 @@ const StreamerCard = ({
 
       <div className="p-3 space-y-2">
         <div className="flex items-start gap-2">
-          <Avatar className="h-8 w-8 flex-shrink-0 float-animation">
-            <AvatarImage src={streamerAvatar} />
-            <AvatarFallback className="bg-twitch-500/20">
-              {streamerName.charAt(0).toUpperCase()}
-            </AvatarFallback>
-          </Avatar>
+          <Link to={`/profile/${streamerName}`} onClick={(e) => e.stopPropagation()}>
+            <Avatar className="h-8 w-8 flex-shrink-0 ring-2 ring-transparent hover:ring-twitch-500 transition-all duration-200">
+              <AvatarImage src={streamerAvatar} />
+              <AvatarFallback className="bg-twitch-500/20">
+                {streamerName.charAt(0).toUpperCase()}
+              </AvatarFallback>
+            </Avatar>
+          </Link>
 
           <div className="space-y-1 flex-1 min-w-0">
-            <h3 className="font-medium text-sm line-clamp-1">{title}</h3>
-            <p className="text-xs text-muted-foreground">{streamerName}</p>
+            <Link to={`/stream/${id}`}>
+              <h3 className="font-medium text-sm line-clamp-1 hover:text-twitch-500 transition-colors duration-200">{title}</h3>
+            </Link>
+            <Link to={`/profile/${streamerName}`} onClick={(e) => e.stopPropagation()}>
+              <p className="text-xs text-muted-foreground hover:text-twitch-500 transition-colors duration-200">{streamerName}</p>
+            </Link>
           </div>
         </div>
 
@@ -96,14 +142,14 @@ const StreamerCard = ({
             <Badge 
               key={index} 
               variant="secondary" 
-              className="text-xs shimmer-effect"
+              className="text-xs shimmer-effect cursor-pointer hover:bg-twitch-500/20"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {category}
             </Badge>
           ))}
           {categories.length > 2 && (
-            <Badge variant="outline" className="text-xs">
+            <Badge variant="outline" className="text-xs cursor-pointer hover:bg-card/80">
               +{categories.length - 2}
             </Badge>
           )}

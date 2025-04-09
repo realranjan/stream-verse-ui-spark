@@ -14,16 +14,58 @@ import StreamPage from "@/pages/StreamPage";
 import NotFound from "@/pages/NotFound";
 import Header from "@/components/Header";
 
-// Preload font
-const preloadFont = () => {
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
-  link.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap';
-  document.head.appendChild(link);
+// Preload fonts
+const preloadFonts = () => {
+  // Poppins for body text
+  const poppins = document.createElement('link');
+  poppins.rel = 'stylesheet';
+  poppins.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap';
+  document.head.appendChild(poppins);
+  
+  // Playfair Display for headings
+  const playfair = document.createElement('link');
+  playfair.rel = 'stylesheet';
+  playfair.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap';
+  document.head.appendChild(playfair);
 };
-preloadFont();
+preloadFonts();
 
-const queryClient = new QueryClient();
+// Add the font to our custom CSS
+const addCustomStyles = () => {
+  const style = document.createElement('style');
+  style.textContent = `
+    h1, h2, h3, .font-heading {
+      font-family: 'Playfair Display', serif;
+    }
+    
+    .emphasis-text {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+    
+    /* Smooth scrolling */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Better focus outlines */
+    :focus {
+      outline: 2px solid rgba(155, 135, 245, 0.5);
+      outline-offset: 2px;
+    }
+  `;
+  document.head.appendChild(style);
+};
+addCustomStyles();
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 60000, // 1 minute
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 const AppContent = () => {
   const { isDarkMode, toggleTheme } = useTheme();
@@ -40,6 +82,11 @@ const AppContent = () => {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
+      <footer className="border-t py-6 bg-background/80 backdrop-blur-sm">
+        <div className="container text-center text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} StreamVerse. All rights reserved.</p>
+        </div>
+      </footer>
     </div>
   );
 };
