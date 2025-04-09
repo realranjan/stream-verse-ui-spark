@@ -20,6 +20,7 @@ export default {
 		},
 		extend: {
 			fontFamily: {
+				'sans': ['Geist', 'sans-serif'],
 				'poppins': ['Poppins', 'sans-serif'],
 			},
 			colors: {
@@ -87,9 +88,9 @@ export default {
 				}
 			},
 			borderRadius: {
-				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				lg: '0.5rem',
+				md: '0.25rem',
+				sm: '0.125rem'
 			},
 			keyframes: {
 				'accordion-down': {

@@ -1,4 +1,7 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,7 +27,7 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 270 76% 74%;
-    --radius: 0.75rem;
+    --radius: 0.25rem;
   }
 
   .light {
@@ -47,12 +50,12 @@
     --border: 240 5.9% 90%;
     --input: 240 5.9% 90%;
     --ring: 270 76% 74%;
-    --radius: 0.75rem;
+    --radius: 0.25rem;
   }
 
   * {
     @apply border-border selection:bg-twitch-500/20 selection:text-twitch-500;
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Geist', sans-serif;
   }
   
   body {

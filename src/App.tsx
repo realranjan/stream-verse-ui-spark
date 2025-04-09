@@ -17,7 +17,13 @@ import Header from "@/components/Header";
 
 // Preload fonts
 const preloadFonts = () => {
-  // Poppins for body text
+  // Geist font
+  const geist = document.createElement('link');
+  geist.rel = 'stylesheet';
+  geist.href = 'https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&display=swap';
+  document.head.appendChild(geist);
+  
+  // Poppins for additional styling
   const poppins = document.createElement('link');
   poppins.rel = 'stylesheet';
   poppins.href = 'https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap';
