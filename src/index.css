@@ -1,6 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;700&family=Anybody:wght@400;500;700&family=VT323&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -8,166 +6,522 @@
 
 @layer base {
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 255 92% 76%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 270 76% 74%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 270 76% 74%;
-    --radius: 0.25rem;
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+
+    /* Neon Colors */
+    --neon-pink: rgb(255, 0, 255);
+    --neon-blue: rgb(0, 195, 255);
+    --neon-green: rgb(0, 255, 136);
+    --neon-yellow: rgb(255, 255, 0);
+    --neon-purple: rgb(183, 0, 255);
   }
 
-  .light {
-    --background: 0 0% 98%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 262 83% 74%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 270 76% 74%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 270 76% 74%;
-    --radius: 0.25rem;
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
   }
 
   * {
-    @apply border-border selection:bg-twitch-500/20 selection:text-twitch-500;
-    font-family: 'Geist', sans-serif;
-  }
-  
-  body {
-    @apply bg-background text-foreground antialiased;
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02", "cv03";
+    @apply border-border;
   }
 
-  html {
-    @apply scroll-smooth;
+  body {
+    @apply bg-background text-foreground font-sans relative;
   }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-black/10 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-neon-pink/60 rounded-full hover:bg-neon-pink/80 transition-colors;
+  }
+
+  /* Headings with special fonts */
+  h1, h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    @apply font-bold;
+  }
+
+  h3, h4, h5, h6 {
+    font-family: 'Poppins', sans-serif;
+    @apply font-semibold;
+  }
+
+  /* Subtle background grid */
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+      linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+    background-size: 20px 20px;
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+/* Animation Key Frames */
+@keyframes glitch {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+@keyframes heartbeat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.2); }
+  40% { transform: scale(0.95); }
+  60% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0px); }
+}
+
+@keyframes slideInTL {
+  0% { transform: translate(-100%, -100%); }
+  100% { transform: translate(-1px, -1px); }
+}
+
+@keyframes slideInTR {
+  0% { transform: translate(100%, -100%); }
+  100% { transform: translate(1px, -1px); }
+}
+
+@keyframes slideInBL {
+  0% { transform: translate(-100%, 100%); }
+  100% { transform: translate(-1px, 1px); }
+}
+
+@keyframes slideInBR {
+  0% { transform: translate(100%, 100%); }
+  100% { transform: translate(1px, 1px); }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes textRainbow {
+  0% { color: var(--neon-pink); }
+  25% { color: var(--neon-blue); }
+  50% { color: var(--neon-green); }
+  75% { color: var(--neon-yellow); }
+  100% { color: var(--neon-pink); }
 }
 
 @layer utilities {
-  .scrollbar-none {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  .scrollbar-none::-webkit-scrollbar {
-    display: none;
+  /* Text gradients */
+  .text-gradient-pink-blue {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-neon-pink to-neon-blue;
   }
 
-  .glass-morphism {
-    @apply backdrop-blur-lg bg-white/5 border border-white/10 shadow-lg;
-  }
-  
-  .text-gradient {
-    @apply bg-gradient-to-br from-twitch-500 via-twitch-400 to-neon-pink bg-clip-text text-transparent;
-  }
-  
-  .hover-scale {
-    @apply transition-transform duration-200 hover:scale-105;
+  .text-gradient-blue-green {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-neon-blue to-neon-green;
   }
 
-  .custom-scrollbar::-webkit-scrollbar {
-    width: 6px;
+  .text-gradient-purple-pink {
+    @apply text-transparent bg-clip-text bg-gradient-to-r from-neon-purple to-neon-pink;
   }
 
-  .custom-scrollbar::-webkit-scrollbar-track {
-    @apply bg-transparent;
+  /* Neo-brutalism style */
+  .neo-brutalism {
+    @apply border-4 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,0.9)] relative overflow-hidden;
   }
 
-  .custom-scrollbar::-webkit-scrollbar-thumb {
-    @apply bg-twitch-500/50 rounded-full;
-  }
-  
-  .shimmer-effect {
-    @apply relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent;
-  }
-  
-  .neon-glow {
-    @apply animate-glow;
-  }
-  
-  .float-animation {
-    @apply animate-float;
-  }
-  
-  .bounce-in {
-    @apply animate-bounce-in;
+  /* Video player specific neo-brutalism */
+  .video-player-container .neo-brutalism {
+    @apply bg-black text-white;
   }
 
-  /* New animation utilities */
-  .pulse-slow {
-    @apply animate-[pulse_4s_cubic-bezier(0.4,0,0.6,1)_infinite];
+  /* Y2K style elements */
+  .y2k-border {
+    @apply border-4 border-black relative;
+  }
+
+  /* 3D card hover effect */
+  .card-3d-effect {
+    @apply transition-transform duration-300 transform-gpu hover:rotate-1 hover:-translate-y-1;
+  }
+
+  /* Custom cursor */
+  .custom-cursor {
+    cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23FF00FF' stroke-width='2'><circle cx='12' cy='12' r='10'/></svg>") 12 12, auto;
   }
   
-  .slide-up {
-    @apply animate-slide-up;
+  /* Gradient backgrounds */
+  .bg-cyber-gradient {
+    @apply bg-gradient-to-br from-neon-blue via-neon-purple to-neon-pink;
   }
   
-  .slide-down {
-    @apply animate-slide-down;
+  .bg-y2k-gradient {
+    @apply bg-gradient-to-r from-neon-yellow via-neon-green to-neon-blue;
   }
-  
-  .slide-left {
-    @apply animate-slide-left;
+
+  /* VHS scan lines */
+  .bg-scan-lines {
+    background-image: repeating-linear-gradient(
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.2) 3px,
+      rgba(0, 0, 0, 0.2) 3px
+    );
   }
-  
-  .slide-right {
-    @apply animate-slide-right;
+
+  /* Animation utilities */
+  .animate-glitch {
+    animation: glitch 0.3s ease-in-out infinite;
   }
-  
-  .pop {
-    @apply animate-pop;
+
+  .animate-heartbeat {
+    animation: heartbeat 0.8s ease-in-out;
   }
-  
-  .card-hover {
-    @apply transition-all duration-300 hover:shadow-xl hover:shadow-twitch-500/20 hover:scale-[1.02] hover:z-10;
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
   }
-  
-  .twitch-card {
-    @apply bg-card border border-border/50 rounded-lg overflow-hidden;
+
+  .animate-slide-in-tl {
+    animation: slideInTL 0.3s forwards;
   }
-  
-  .card-gradient {
-    @apply bg-gradient-to-br from-card to-twitch-800/80;
+
+  .animate-slide-in-tr {
+    animation: slideInTR 0.3s forwards;
   }
-  
-  .btn-twitch {
-    @apply bg-twitch-500 hover:bg-twitch-600 text-white font-medium rounded-md transition-colors duration-200;
+
+  .animate-slide-in-bl {
+    animation: slideInBL 0.3s forwards;
   }
-  
-  .btn-twitch-outline {
-    @apply border border-twitch-500 text-twitch-500 hover:bg-twitch-500/10 font-medium rounded-md transition-colors duration-200;
+
+  .animate-slide-in-br {
+    animation: slideInBR 0.3s forwards;
   }
-  
-  .nav-link {
-    @apply relative px-2 py-1 transition-colors duration-200 after:absolute after:left-0 after:right-0 after:bottom-[-2px] after:h-[2px] after:bg-twitch-500 after:transform after:scale-x-0 after:origin-bottom-right after:transition-transform hover:after:scale-x-100 hover:after:origin-bottom-left;
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out forwards;
   }
-  
-  .nav-link-active {
-    @apply text-twitch-500 after:scale-x-100 after:origin-bottom-left;
+
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  .animate-text-rainbow {
+    animation: textRainbow 2s linear infinite;
   }
 }
+
+/* Page transition animations for smoother UX */
+.page-transition-enter {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.page-transition-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 300ms, transform 300ms;
+}
+.page-transition-exit {
+  opacity: 1;
+}
+.page-transition-exit-active {
+  opacity: 0;
+  transition: opacity 300ms;
+}
+
+/* VHS and retro video effects */
+.vhs-effect {
+  pointer-events: none;
+}
+
+.vhs-scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(0, 0, 0, 0.05) 0.5%,
+    transparent 1%
+  );
+  opacity: 0.2;
+  animation: scanline 8s linear infinite;
+}
+
+@keyframes scanline {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+.vhs-noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.1'/%3E%3C/svg%3E");
+  opacity: 0.05;
+}
+
+.vhs-glitch {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+  mix-blend-mode: overlay;
+  opacity: 0.25;
+  animation: glitch-effect 0.2s infinite;
+}
+
+@keyframes glitch-effect {
+  0% {
+    transform: translate(0);
+  }
+  25% {
+    transform: translate(-5px, 5px);
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    transform: translate(5px, 0);
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    transform: translate(-2px, -5px);
+    filter: hue-rotate(270deg);
+  }
+  100% {
+    transform: translate(0);
+    filter: hue-rotate(360deg);
+  }
+}
+
+.glitch-active {
+  animation: glitch-shake 0.2s infinite;
+}
+
+@keyframes glitch-shake {
+  0% {
+    transform: translate(0)
+  }
+  20% {
+    transform: translate(-5px, 5px);
+  }
+  40% {
+    transform: translate(-5px, -5px);
+  }
+  60% {
+    transform: translate(5px, 5px);
+  }
+  80% {
+    transform: translate(5px, -5px);
+  }
+  100% {
+    transform: translate(0)
+  }
+}
+
+.tracking-line {
+  opacity: 0;
+  height: 2px;
+  animation: tracking-line 10s linear infinite;
+}
+
+@keyframes tracking-line {
+  0% {
+    opacity: 0;
+    transform: translateY(-100%);
+  }
+  10% {
+    opacity: 0;
+  }
+  11% {
+    opacity: 0.8;
+    transform: translateY(100%);
+  }
+  19% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+/* Enhance video container for both light and dark modes */
+.video-player-container .neo-brutalism {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #000 !important; /* Force black background regardless of theme */
+  color: white !important; /* Force white text */
+}
+
+.video-player-container .badge {
+  color: white !important;
+}
+
+.video-player-container .neo-brutalism:hover {
+  transform: translate(-4px, -4px);
+  box-shadow: 12px 12px 0px 0px rgba(0,0,0,1);
+}
+
+/* Light mode fixes for the video player */
+.light .video-player-container {
+  --text-opacity: 1;
+}
+
+/* Force black box shadow in light mode */
+.light .video-player-container .neo-brutalism {
+  box-shadow: 8px 8px 0px 0px rgba(0,0,0,0.9) !important;
+}
+
+.light .video-player-container .neo-brutalism:hover {
+  box-shadow: 12px 12px 0px 0px rgba(0,0,0,0.9) !important;
+}
+
+/* Fix title and metadata text in light mode */
+.light .video-player-container h2 {
+  color: rgba(var(--foreground), var(--text-opacity));
+}
+
+.light .video-player-container .video-info-text {
+  color: rgba(var(--foreground), var(--text-opacity));
+}
+
+/* Ensure neo-brutalism buttons have proper colors in light mode */
+.light .neo-brutalism-button {
+  background-color: black !important;
+  color: white !important;
+  border-color: var(--neon-pink) !important;
+}
+
+/* Make sure follow button stays visible in light mode */
+.light .video-player-container .neo-brutalism-button.bg-white {
+  background-color: white !important;
+  color: black !important;
+}
+
+/* Add stronger shadow to make text more readable in light mode */
+.video-controls-text-shadow {
+  text-shadow: 0 1px 3px rgba(0,0,0,1) !important;
+}
+
+/* Make control panel background more opaque in light mode */
+.light .video-controls-bg {
+  background-color: rgba(0,0,0,0.8) !important;
+  background-image: linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.6), transparent) !important;
+}
+
+/* Fix the video progress bar in light mode */
+.light .video-player-container .progress-bar-container {
+  background-color: rgba(0,0,0,0.7) !important;
+  border-color: rgba(255,255,255,0.3) !important;
+}
+
+/* Improve video control button visibility in light mode */
+.light .video-player-container .video-control-button {
+  background-color: rgba(0,0,0,0.7) !important;
+  color: white !important;
+  border-color: rgba(255,255,255,0.2) !important;
+}
+
+.light .video-player-container .video-control-button:hover {
+  background-color: rgba(0,0,0,0.9) !important;
+  border-color: var(--neon-pink) !important;
+  color: var(--neon-pink) !important;
+}
+
+/* Fix interactive icons in light mode */
+.light .video-player-container .like-button-icon.fill-red-500 {
+  fill: #ff0050 !important; 
+  color: #ff0050 !important;
+}
+
+/* Add prominent border around video container in light mode */
+.light .video-player-container .neo-brutalism {
+  border: 4px solid black !important;
+}
+
+/* End of additions */

@@ -71,3 +71,52 @@ Yes it is!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## StreamVerse UI - Gen Z Edition
+
+A modern streaming platform user interface built with Vite, React, TypeScript, and Tailwind CSS, featuring:
+
+- Neo-brutalism design elements with thick borders and strong shadows
+- Y2K aesthetic influences and decorative elements
+- Animated hover effects and interactive elements
+- Glitch animations and VHS scan line effects
+- Neon color palettes and gradient text effects
+
+### Component Highlights
+
+#### Header
+- Modern navigation with interactive elements
+- Neo-brutalism styling with thick borders and decorative elements
+- Animated logo and navigation elements
+- Mobile-responsive design with enhanced menu interactions
+
+#### StreamerCard
+- Interactive hover states with glitch animations
+- Corner decorations that animate in on hover
+- VHS scan line overlay effects
+- Premium content badges with special styling
+- Animated stats display
+- Randomized accent colors for visual variety
+
+### Animation System
+
+The app includes a comprehensive animation system with:
+
+- Glitch effects for cyberpunk aesthetic
+- Slide-in animations for UI elements
+- Heartbeat animations for interactive elements
+- Text rainbow effects for emphasis
+- Float animations for subtle movement
+
+### Design Elements
+
+- Custom utility classes for neo-brutalism and Y2K design patterns
+- Gradient backgrounds and text effects
+- Custom scrollbars for enhanced UX
+- Animated page transitions
+
+### Styling Notes
+
+- Uses a custom set of Google Fonts optimized for Gen Z aesthetic
+- Implements CSS variables for neon color palette
+- Uses Tailwind CSS for responsive design

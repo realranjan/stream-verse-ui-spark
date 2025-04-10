@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -80,12 +79,28 @@ export default {
 					"900": "#221F26", // Very dark background
 				},
 				neon: {
-					orange: "#F97316", // Bright orange
-					pink: "#D946EF", // Magenta pink
-					blue: "#1EAEDB", // Bright blue
-					green: "#10B981", // Emerald green
-					yellow: "#FBBF24", // Amber yellow
-				}
+					orange: "#FF5F1F", // Brighter orange
+					pink: "#FF2EB6", // Hot pink
+					blue: "#00FFFF", // Cyan
+					green: "#AFFF2E", // Acid green
+					yellow: "#FFEA11", // Electric yellow
+					purple: "#BE01FF", // Vibrant purple
+				},
+				y2k: {
+					blue: "#00FFFF", // Cyan
+					pink: "#FF80AB", // Baby pink
+					purple: "#D580FF", // Lavender
+					green: "#80FF80", // Mint
+					yellow: "#FFFF80", // Pastel yellow
+					silver: "#C0C0C0", // Silver
+				},
+				vapor: {
+					pink: "#FF6AD5",
+					purple: "#C774E8",
+					blue: "#AD8CFF",
+					teal: "#8795E8",
+					lightBlue: "#94D0FF",
+				},
 			},
 			borderRadius: {
 				lg: '0.5rem',
@@ -216,6 +231,49 @@ export default {
 						opacity: '1'
 					},
 				},
+				'glitch': {
+					'0%, 100%': { transform: 'translate(0)' },
+					'20%': { transform: 'translate(-2px, 2px)' },
+					'40%': { transform: 'translate(-2px, -2px)' },
+					'60%': { transform: 'translate(2px, 2px)' },
+					'80%': { transform: 'translate(2px, -2px)' },
+				},
+				'tilt': {
+					'0%, 100%': { transform: 'rotate(-2deg)' },
+					'50%': { transform: 'rotate(2deg)' },
+				},
+				'3d-rotate': {
+					'0%': { transform: 'rotateY(0deg)' },
+					'100%': { transform: 'rotateY(360deg)' },
+				},
+				'float-3d': {
+					'0%, 100%': { transform: 'translateZ(0) translateY(0) rotateX(0)' },
+					'50%': { transform: 'translateZ(10px) translateY(-5px) rotateX(5deg)' },
+				},
+				'text-rainbow': {
+					'0%': { color: '#FF80AB' },
+					'20%': { color: '#FFEA11' },
+					'40%': { color: '#AFFF2E' },
+					'60%': { color: '#00FFFF' },
+					'80%': { color: '#BE01FF' },
+					'100%': { color: '#FF80AB' },
+				},
+				'border-rainbow': {
+					'0%': { borderColor: '#FF80AB' },
+					'20%': { borderColor: '#FFEA11' },
+					'40%': { borderColor: '#AFFF2E' },
+					'60%': { borderColor: '#00FFFF' },
+					'80%': { borderColor: '#BE01FF' },
+					'100%': { borderColor: '#FF80AB' },
+				},
+				'reveal-left': {
+					'0%': { transform: 'translateX(-100%)', opacity: '0' },
+					'100%': { transform: 'translateX(0)', opacity: '1' },
+				},
+				'reveal-right': {
+					'0%': { transform: 'translateX(100%)', opacity: '0' },
+					'100%': { transform: 'translateX(0)', opacity: '1' },
+				},
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
@@ -243,7 +301,15 @@ export default {
 				'color-cycle': 'color-cycle 6s linear infinite',
 				'rotate-3d': 'rotate-3d 5s linear infinite',
 				'ripple-ping': 'ripple-ping 1.5s cubic-bezier(0, 0, 0.2, 1) infinite',
-				'explosive-appear': 'explosive-appear 0.6s ease-out forwards'
+				'explosive-appear': 'explosive-appear 0.6s ease-out forwards',
+				'glitch': 'glitch 0.3s ease-in-out infinite',
+				'tilt': 'tilt 5s ease-in-out infinite',
+				'3d-rotate': '3d-rotate 5s linear infinite',
+				'float-3d': 'float-3d 5s ease-in-out infinite',
+				'text-rainbow': 'text-rainbow 5s linear infinite',
+				'border-rainbow': 'border-rainbow 5s linear infinite',
+				'reveal-left': 'reveal-left 0.5s ease-out forwards',
+				'reveal-right': 'reveal-right 0.5s ease-out forwards',
 			},
 			backgroundImage: {
 				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -255,6 +321,11 @@ export default {
 				'button-gradient': 'linear-gradient(135deg, #9b87f5 0%, #8A7EDA 100%)',
 				'featured-gradient': 'linear-gradient(to bottom, rgba(26,31,44,0) 0%, rgba(26,31,44,1) 100%)',
 				'hero-pattern': 'url("data:image/svg+xml,%3Csvg width=\'30\' height=\'30\' viewBox=\'0 0 30 30\' fill=\'none\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cpath d=\'M1.22676 0C1.91374 0 2.45351 0.539773 2.45351 1.22676C2.45351 1.91374 1.91374 2.45351 1.22676 2.45351C0.539773 2.45351 0 1.91374 0 1.22676C0 0.539773 0.539773 0 1.22676 0Z\' fill=\'rgba(155,135,245,0.07)\'/%3E%3C/svg%3E")',
+				'y2k-gradient': 'linear-gradient(135deg, #FF80AB 0%, #00FFFF 50%, #80FF80 100%)',
+				'cyber-gradient': 'linear-gradient(135deg, #FF2EB6 0%, #BE01FF 50%, #00FFFF 100%)',
+				'retro-gradient': 'linear-gradient(135deg, #FF5F1F 0%, #FFEA11 100%)',
+				'neon-grid': 'radial-gradient(circle, rgba(155,135,245,0.3) 0%, rgba(155,135,245,0) 70%), linear-gradient(to right, rgba(155,135,245,0.15) 1px, transparent 1px), linear-gradient(to bottom, rgba(155,135,245,0.15) 1px, transparent 1px)',
+				'glitch-overlay': 'repeating-linear-gradient(to right, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 1px, transparent 1px, transparent 2px)',
 			},
 			backdropFilter: {
 				'none': 'none',
